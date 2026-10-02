@@ -6,6 +6,10 @@
 
   var API_BASE = 'https://clck.ru/--?url=';
 
+  // Google AdSense publisher ID, e.g. 'ca-pub-1234567890123456'.
+  // Leave empty to keep the ad slot hidden. Set it to serve real ads.
+  var ADSENSE_CLIENT = '';
+
   // Normalize user input into a valid http(s) URL string. Throws on invalid.
   function normalizeUrl(input) {
     var s = String(input || '').trim();
@@ -88,6 +92,22 @@
       } catch (e) { reject(e); }
       document.body.removeChild(ta);
     });
+  }
+
+  // ---- Ads (AdSense) ----
+  function initAds() {
+    if (!ADSENSE_CLIENT) return;
+    var card = document.getElementById('adCard');
+    if (!card) return;
+    var ins = card.querySelector('ins.adsbygoogle');
+    ins.setAttribute('data-ad-client', ADSENSE_CLIENT);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + ADSENSE_CLIENT;
+    s.crossOrigin = 'anonymous';
+    document.head.appendChild(s);
+    card.hidden = false;
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   // ---- DOM wiring (browser only) ----
@@ -204,6 +224,7 @@
     });
 
     renderHistory(); renderStats();
+    initAds();
   }
 
   if (typeof document !== 'undefined' && document.getElementById) {
