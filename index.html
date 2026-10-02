@@ -95,6 +95,7 @@
   #historyList .meta{font-size:11px; color:var(--muted); margin-bottom:8px;}
   #historyList .actions{display:flex; gap:8px;}
   .empty{color:var(--muted); font-size:14px; text-align:center; padding:18px 0 6px;}
+  .ad-label{font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); text-align:center; margin-bottom:6px;}
   .stats{display:flex; gap:12px; margin-bottom:16px;}
   .stat{flex:1; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:14px; text-align:center; box-shadow:var(--shadow);}
   .stat .n{font-size:24px; font-weight:800;}
@@ -138,6 +139,11 @@
       <button class="btn btn-small btn-ghost" id="qrBtn">QR code</button>
     </div>
     <div id="qrWrap"><img id="qrImg" alt="QR code"></div>
+  </div>
+
+  <div class="card" id="adCard" hidden>
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
   </div>
 
   <div class="card">
